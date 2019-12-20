@@ -1,0 +1,56 @@
+id: amr_pytorch
+label: AMR_Pytorch
+category: '[Modulation Recognition]'
+
+templates:
+  imports: import amr
+  make: amr.amr_pytorch(${norm_power}, ${state_dict}, ${vlen}, ${classes}, ${cuda})
+
+#  Make one 'parameters' list entry for every Parameter you want settable from the GUI.
+#     Sub-entries of dictionary:
+#     * id (makes the value accessible as \$keyname, e.g. in the make entry)
+#     * label
+#     * dtype 
+parameters:
+- id: norm_power
+  label: Norm Power
+  dtype: bool
+  default: False
+- id: state_dict
+  label: State Dict
+  dtype: file_open
+- id: vlen
+  label: Vec Length
+  dtype: int
+- id: classes
+  label: Classes
+  dtype: raw
+- id: cuda
+  label: Cuda
+  dtype: bool
+  default: False
+
+#  Make one 'inputs' list entry per input. Sub-entries of dictionary:
+#      * label (an identifier for the GUI)
+#      * domain
+#      * dtype
+#      * vlen
+#      * optional (set to 1 for optional inputs) 
+inputs:
+- label: in
+  domain: stream
+
+
+#  Make one 'outputs' list entry per output. Sub-entries of dictionary:
+#      * label (an identifier for the GUI)
+#      * dtype
+#      * vlen
+#      * optional (set to 1 for optional inputs) 
+outputs:
+- label: out 
+  domain: stream
+  dtype: int
+
+#!-- e.g. int, float, complex, byte, short, xxx_vector, ...--
+
+file_format: 1
